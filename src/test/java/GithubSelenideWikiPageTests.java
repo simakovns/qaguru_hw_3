@@ -13,17 +13,13 @@ public class GithubSelenideWikiPageTests {
     @BeforeAll
     static void setUp() {
         Configuration.browserSize = "1000x1000";
-        open("https://github.com/selenide/selenide/wiki");
     }
 
     @Test
     void wikiSoftAssertionsTests() {
-        final SelenideElement softAssertionsElement = $$(".markdown-body ul li").find(text("Soft assertions"));
-
-        softAssertionsElement.shouldBe(visible);
-
+        open("https://github.com/selenide/selenide/wiki");
         //find <a> to click on
-        softAssertionsElement.lastChild().click();
+        $$(".markdown-body ul li").find(text("Soft assertions")).lastChild().click();
 
         $$(".markdown-body ol li").filterBy(text("JUnit5")).shouldHave(sizeGreaterThan(0));
     }
